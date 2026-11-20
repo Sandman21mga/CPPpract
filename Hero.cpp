@@ -3,6 +3,7 @@
 void Hero::TakeDamage(unsigned damage)
 {
     _HP -= damage;
+    if(_HP < 0) _HP = 0;//инвариант
 }
 void Hero::Check()
 {
@@ -10,23 +11,16 @@ void Hero::Check()
 }
 void Hero::MoveX(int pos)
 {
-    _heroPosX += pos;
+    if(_heroPosX + pos >= 0 && _heroPosX + pos <= map.getSizeX()) _heroPosX += pos;//инвариант
 }
 void Hero::MoveY(int pos)
 {
-    _heroPosY += pos;
+    if(_heroPosY + pos >= 0 && _heroPosY + pos <= map.getSizeY()) _heroPosY += pos;//инвариант
 }
-Hero::Hero(int HP, int gold)
+Hero::Hero(Map& map, int HP, int gold) :map(map)
 {
     this->_HP = HP;
     this->_gold = gold;
-    this->_heroPosY = 1;
-    this->_heroPosX = 1;
-}
-Hero::Hero()
-{
-    this->_HP = 10;
-    this->_gold = 0;
     this->_heroPosY = 1;
     this->_heroPosX = 1;
 }

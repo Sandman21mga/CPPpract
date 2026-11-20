@@ -2,21 +2,13 @@
 #include "Hero.h"
 #include <sstream>
 #include <string>
-#include <vector>
-
-enum class FileCodes {READ_SUCCESS, READ_ERROR};
-
-FileCodes ReadFile()
-{
-    return FileCodes::READ_SUCCESS;
-}
-
+#include "MapPrinter.h"
+#include "Monster.h"
 void ToLowerString(std::string &str)
 {
     for(char &sym : str)
         sym = (char)std::tolower(sym);
 }
-
 
 int main()
 {
@@ -38,20 +30,16 @@ int main()
     const char *hitShort = "h";
     const char *checkShort = "c";
 
-    if(FileCodes::READ_ERROR == ReadFile()) {
-        std::cout << "Error reading file!" << '\n';
-        return 0;
-    }
-
     std::vector<std::string> inputVector;
     std::string input;
 
     Map map(10, 10);
-    Hero hero;
+    Hero hero(map);
+    MapPrinter mapPrinter(map);
     map.GenerateMap();
     while(true)
     {
-        map.DrawMap(hero.getHeroPosY(), hero.getHeroPosX());
+        mapPrinter.DrawMap(hero.getHeroPosY(), hero.getHeroPosX());
 
         std::cout << "Enter command: " << "\n";
 
@@ -84,5 +72,6 @@ int main()
 
         else printf("Commands: north, south, east, west, quit,\n"
                     " status, hit (N), check\n");
+        inputVector.clear();
     }
 }

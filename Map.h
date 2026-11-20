@@ -4,27 +4,26 @@
 #include <random>
 #include <cstring>
 #include <iostream>
+#include <vector>
 //Класс - шаблон
 //Объект - экземпляр класса
 class Map
 {
 private:
+    std::vector<std::vector<char>> _mapArray;
     unsigned _sizeX;//Полей = переменные внутри класса = состояние
     unsigned _sizeY;
-    char **_mapArray;
-    char *_mapData;
 private:
     void checkExitRecursive(bool **usedTiles, bool &foundExit, int heroPosY, int heroPosX);
 public:
-    Map(unsigned sizeX, unsigned sizeY);
-    ~Map();
 
-    char* operator[] (int index);// узбекский сеттер
-    const char* operator[] (int index) const; //  узбекский геттер
+    Map(unsigned sizeX, unsigned sizeY);
+
+    std::vector<char>& operator[] (int index);// узбекский сеттер
+    const std::vector<char>& operator[] (int index) const; //  узбекский геттер
     unsigned getSizeX();//геттер
     unsigned getSizeY();//геттер
     void GenerateMap();
-    void DrawMap(int heroPosY, int heroPosX);//Функция внутри класса = методы
     bool CheckExit(int heroPosX, int heroPosY);
 };
 

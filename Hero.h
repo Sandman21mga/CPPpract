@@ -2,7 +2,7 @@
 #ifndef HERO_H
 #define HERO_H
 #include <iostream>
-
+#include "Map.h"
 class Hero
 {
 private:
@@ -10,9 +10,9 @@ private:
     int _gold;
     int _heroPosX;
     int _heroPosY;
+    Map& map;
 public:
-    Hero(int HP, int gold);
-    Hero();
+    Hero(Map& map, int HP = 10, int gold = 0);
     void TakeDamage(unsigned damage);
     void Check();
     void MoveX(int pos);

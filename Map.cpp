@@ -1,36 +1,10 @@
 #include "Map.h"
 
-Map::Map(unsigned sizeX, unsigned sizeY)// конструктор
+Map::Map(unsigned sizeX, unsigned sizeY) : _mapArray(sizeY, std::vector<char>(sizeX))// конструктор
 {
-    this->_sizeX = sizeX;
-    this->_sizeY = sizeY;
-
-    _mapArray = new char*[_sizeY];
-    _mapData = new char[_sizeX*_sizeY];
-    for(int i = 0; i < _sizeY; ++i)
-    {
-        _mapArray[i] = &_mapData[i * _sizeX];
-    }
+    _sizeX = sizeX;
+    _sizeY = sizeY;
 }
-Map::~Map()// деструктор
-{
-    delete []_mapArray;
-    delete []_mapData;
-}
-
-void Map::DrawMap(int heroPosY, int heroPosX)
-{
-    for(unsigned y = 0; y < _sizeY; ++y)
-    {
-        for(unsigned x = 0; x < _sizeX; ++x)
-        {
-            if(y == heroPosY && x == heroPosX) printf("P");
-            else std::cout <<_mapArray[y][x];
-        }
-        std::cout << "\n";
-    }
-}
-
 void Map::GenerateMap()
 {
     char exitFlag = 0;
@@ -51,11 +25,11 @@ void Map::GenerateMap()
     }
 }
 
-char *Map::operator[] (int index) //Гагтунгр правит остальными гексархами.
+std::vector<char> &Map::operator[] (int index)
 {
     return _mapArray[index];
 }
-const char *Map::operator[](int index) const //
+const std::vector<char> &Map::operator[](int index) const
 {
     return _mapArray[index];
 }

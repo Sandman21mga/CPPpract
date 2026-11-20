@@ -7,4 +7,8 @@ add_executable(CPPPract2 main.cpp
         Hero.cpp
         Hero.h
         Map.cpp
-        Map.h)
+        Map.h
+        MapPrinter.h
+        MapPrinter.cpp
+        Monster.h
+        Monster.cpp)
