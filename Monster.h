@@ -1,13 +1,16 @@
 
 #ifndef MONSTER_H
 #define MONSTER_H
-class Monster
+#include "Entity.h"
+class Monster : public Entity
     {
-    private:
+protected:
         static inline int numberOfMonsters;
 public:
-        Monster();
-        ~Monster();
+        Monster(int PosX, int PosY, int Hp, char symbol, Map& map);
+        virtual ~Monster();
+
+    virtual void Turn(int shiftX, int shiftY) = 0;
 };
 
 

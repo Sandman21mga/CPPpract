@@ -2,21 +2,18 @@
 #ifndef HERO_H
 #define HERO_H
 #include <iostream>
-#include "Map.h"
-class Hero
+#include "Entity.h"
+class Hero : public Entity
 {
 private:
-    int _HP;
     int _gold;
-    int _heroPosX;
-    int _heroPosY;
-    Map& map;
 public:
-    Hero(Map& map, int HP = 10, int gold = 0);
-    void TakeDamage(unsigned damage);
+    Hero(Map& map, int Hp = 10, int gold = 0);
+    void TakeDamage(int damage);
     void Check();
     void MoveX(int pos);
     void MoveY(int pos);
+    void Turn(int shiftX, int shiftY) override;
 
     int getHeroPosX();
     int getHeroPosY();

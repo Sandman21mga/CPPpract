@@ -1,6 +1,6 @@
 #include "Hero.h"
 
-void Hero::TakeDamage(unsigned damage)
+void Hero::TakeDamage(int damage)
 {
     _HP -= damage;
     if(_HP < 0) _HP = 0;//инвариант
@@ -11,24 +11,22 @@ void Hero::Check()
 }
 void Hero::MoveX(int pos)
 {
-    if(_heroPosX + pos >= 0 && _heroPosX + pos <= map.getSizeX()) _heroPosX += pos;//инвариант
+    if(_PosX + pos >= 0 && _PosX + pos <= map.getSizeX()) _PosX += pos;//инвариант
 }
 void Hero::MoveY(int pos)
 {
-    if(_heroPosY + pos >= 0 && _heroPosY + pos <= map.getSizeY()) _heroPosY += pos;//инвариант
+    if(_PosY + pos >= 0 && _PosY + pos <= map.getSizeY()) _PosY += pos;//инвариант
 }
-Hero::Hero(Map& map, int HP, int gold) :map(map)
+Hero::Hero(Map& map,int HP, int gold) :Entity(1,1,HP,'P', map)
 {
-    this->_HP = HP;
     this->_gold = gold;
-    this->_heroPosY = 1;
-    this->_heroPosX = 1;
 }
 int Hero::getHeroPosX()
 {
-    return _heroPosX;
+    return _PosX;
 }
 int Hero::getHeroPosY()
 {
-    return _heroPosY;
+    return _PosY;
 }
+void Hero::Turn(int shiftX, int shiftY){;}

@@ -11,4 +11,14 @@ add_executable(CPPPract2 main.cpp
         MapPrinter.h
         MapPrinter.cpp
         Monster.h
-        Monster.cpp)
+        Monster.cpp
+        Entity.h
+        Orc.h
+        Orc.cpp
+        Thorn.h
+        Thorn.cpp
+        Rat.h
+        Rat.cpp
+        Entity.cpp
+        Game.h
+        Game.cpp)
